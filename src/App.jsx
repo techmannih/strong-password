@@ -1,11 +1,10 @@
 // import './App.css';
 // import { useFormik } from 'formik';
-import { useState } from 'react';
-import "./data"
+import { useState } from "react";
+import "./data";
 // import * as yup from "yup";
-import { upperCaseLetters,lowerCaseLetters,Symbol,Number } from './data';
+import { Number, Symbol, lowerCaseLetters, upperCaseLetters } from "./data";
 function App() {
-
   const [password, setPassword] = useState("");
   const [counter, setCounter] = useState(6);
   const [isUppercase, setIsUppercase] = useState(false);
@@ -35,7 +34,7 @@ function App() {
 
   // console.log(formik.values)
 
-// console.log(Generator());
+  // console.log(Generator());
   const ticker = () => {
     const character = [];
 
@@ -62,17 +61,15 @@ function App() {
     if (character.length === 0) return "";
 
     return character[Math.floor(Math.random() * character.length)];
-  }
+  };
 
-  const increase= (e) => {
+  const increase = (e) => {
     e.preventDefault();
 
     if (counter < 32) {
       setCounter((prevCounter) => prevCounter + 1);
     }
   };
-
-
 
   const decrease = (e) => {
     e.preventDefault();
@@ -81,7 +78,6 @@ function App() {
       setCounter((prevCounter) => prevCounter - 1);
     }
   };
-
 
   const Generator = (e) => {
     e.preventDefault();
@@ -95,73 +91,74 @@ function App() {
     setPassword(_password);
   };
   return (
-    <div className="container">
-      <div className="generator">
-      <h2>Password Generator</h2>
-      <form  
-      action="" className='flex flex-col'>
-      {/* <input type="text" name="Username" id=""
-      onChange={ formik.handleChange} 
-      value={formik.values.Username}
-      placeholder='Username'
-      onBlur={formik.handleBlur}
-      required/> */}
-{/* {formik.touched.Username && formik.errors.Username && <p style={{color:"red"}}>{formik.errors.Username}</p>} */}
-<br />
-<label htmlFor='Uppercase' >Uppercase</label>
-      <input type="checkbox"
-      name='Uppercase'
-      value="Uppercase"
-      
-      checked={isUppercase}
-      onChange={(e) => setIsUppercase(e.target.checked)}
-      id='Uppercase'
-      // required
-      
-      />
-<br />
+    <div className=" bg-slate-800 text-black flex justify-center items-center w-full h-screen ">
+      <div className="generator bg-white p-7 rounded-2xl shadow-2xl shadow-slate-200 ">
+        <h2 className="text-sky-300 font-bold text-2xl py-2">Password Generator</h2>
+        <form action="" className="flex flex-col py-2 ">
+         <div className="flex justify-between">
+          <label htmlFor="Uppercase">Uppercase</label>
+          <input
+            type="checkbox"
+            name="Uppercase"
+            value="Uppercase"
+            checked={isUppercase}
+            onChange={(e) => setIsUppercase(e.target.checked)}
+            id="Uppercase"
+            required
+          /></div>
+          
+<div className="flex justify-between">
+          <label htmlFor="Lowercase">Lowercase</label>
+          <input
+            type="checkbox"
+            name="Lowercase"
+            value="Lowercase"
+            // required
+            checked={isLowercase}
+            onChange={(e) => setIsLowercase(e.target.checked)}
+            id=""
+          /></div>
+         <div className="flex justify-between">
+          <label htmlFor="Number">Number</label>
+          <input
+            type="checkbox"
+            name="Number"
+            value="Number"
+            // required
+            checked={isNumber}
+            onChange={(e) => setIsNumber(e.target.checked)}
+            id="Number"
+          /></div>
+         <div className="flex justify-between">
+          <label htmlFor="Symbol">Symbol</label>
+          <input
+            type="checkbox"
+            name="Symbol"
+            value="Symbol"
+            // required
+            checked={isSymbol}
+            onChange={(e) => setIsSymbol(e.target.checked)}
+            id="Symbol"
+          />
+          </div>
+          <div className="lenght flex justify-between" required>
+            <div className=""><span className="">Lenght</span></div>
+            <div className=" "><button onClick={decrease} className="px-2">-</button>
+            {counter}
+            <button onClick={increase} className="px-2">+</button>
+          </div></div>
 
-<label htmlFor='Lowercase' >Lowercase</label>
-      <input type="checkbox"
-      name='Lowercase'
-      value="Lowercase"
-      // required
-      checked={isLowercase}
-      onChange={(e) => setIsLowercase(e.target.checked)}
-      id=''
-      />
-<br />
-<label htmlFor='Number' >Number</label>
-      <input type="checkbox"
-      name='Number'
-      value="Number"
-      // required
-      checked={isNumber}
-      onChange={(e) => setIsNumber(e.target.checked)}
-      id='Number'
-      />
-<br />
-<label htmlFor='Symbol' >Symbol</label>
-      <input type="checkbox"
-      name='Symbol'
-      value="Symbol"
-      // required
-      checked={isSymbol}
-      onChange={(e) => setIsSymbol(e.target.checked)}
-      id='Symbol'
-      />
-<br />
-      <div className="lenght" required>
-        <span>Lenght</span>
-        <button onClick={decrease}>-</button>{counter}<button onClick={increase}>+</button>
+          
+          <h4 className="password px-2 py-4">{password}</h4>
+          
+          <button type="submit" onClick={Generator} className="py-2 bg-sky-500 hover:bg-sky-700 duration-150 text-yellow-100 rounded-2xl" >
+            Generate Password
+          </button>
+        </form>
       </div>
 
-<br />
-      <h4 className="password">{password}</h4>
-      <br />
-      <button  type='submit' onClick={Generator}>Generate Password</button>
-      </form>
-    </div></div>
+      <footer></footer>
+    </div>
   );
-} 
+}
 export default App;
